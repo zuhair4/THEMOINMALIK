@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingBag, Search, Store } from 'lucide-react';
+import { getImageUrl } from '../data/dairyProducts';
 
 export default function Header({
   cartCount,
@@ -16,10 +17,14 @@ export default function Header({
     <header className="cred-header">
       <div className="cred-main-bar">
         <div className="cred-header-inner">
-          {/* Official THEMOINMALIK DAIRY Brand Monogram & Title */}
+          {/* Official THEMOINMALIK DAIRY Brand Logo & Title */}
           <div className="cred-brand-wrap" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <div className="cred-logo-monogram">
-              <span className="cred-logo-symbol">🥛</span>
+              <img
+                src={getImageUrl("images/themoinmalik_official_logo.png")}
+                alt="THEMOINMALIK DAIRY"
+                className="cred-logo-img"
+              />
             </div>
             <div>
               <div className="cred-logo-title">THEMOINMALIK <span>DAIRY</span></div>

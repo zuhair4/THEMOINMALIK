@@ -1,6 +1,6 @@
 import React from 'react';
-import { Truck, Store, ShieldCheck, Sparkles, CheckCircle2, Award } from 'lucide-react';
-import { DELIVERY_OPTIONS } from '../data/dairyProducts';
+import { Truck, Store, Sparkles } from 'lucide-react';
+import { getImageUrl } from '../data/dairyProducts';
 
 export default function Hero({
   deliveryMode,
@@ -9,69 +9,50 @@ export default function Hero({
   return (
     <section className="cred-hero-section">
       <div className="cred-hero-container">
-        {/* Left Column: Farm Fresh Purity Banner */}
-        <div>
-          <div className="cred-hero-tag">
-            <Sparkles size={13} />
-            <span>FARM FRESH • ZERO ADULTERATION</span>
+        {/* Clean Headline with Official Logo Emblem */}
+        <div className="cred-hero-left">
+          <div className="cred-hero-brand-header">
+            <img
+              src={getImageUrl("images/themoinmalik_official_logo.png")}
+              alt="THE MOIN MALIK Dairy Official Seal"
+              className="cred-hero-seal"
+            />
+            <div>
+              <div className="cred-hero-tag">
+                <Sparkles size={12} />
+                <span>Quality Dairy Supply • B2B Partner</span>
+              </div>
+              <h1 className="cred-hero-title">
+                Pure Commercial Dairy. <span>Direct from Source.</span>
+              </h1>
+            </div>
           </div>
-
-          <h1 className="cred-hero-title">
-            Pure Dairy. <span>Zero Compromise.</span>
-          </h1>
 
           <p className="cred-hero-desc">
-            Commercial daily supply of pure buffalo milk, whole cow milk, malai paneer blocks, thick set curd, and golden danedaar ghee directly from THEMOINMALIK DAIRY plant.
+            Direct batch fulfillment of pure buffalo milk, whole cow milk, malai paneer blocks, curd buckets, and golden danedaar ghee for professional kitchens.
           </p>
-
-          <div className="cred-hero-highlights">
-            <div className="cred-hero-pill">
-              <ShieldCheck size={15} color="#00e599" />
-              <span>Zero Preservatives</span>
-            </div>
-            <div className="cred-hero-pill">
-              <Award size={15} color="#00e599" />
-              <span>FSSAI Certified Pure</span>
-            </div>
-            <div className="cred-hero-pill">
-              <Truck size={15} color="#00e599" />
-              <span>Chilled Van Dispatch</span>
-            </div>
-          </div>
         </div>
 
-        {/* Right Column: 2 Delivery Options Card */}
-        <div className="cred-delivery-card">
-          <div className="cred-deliv-header">
-            <span className="cred-deliv-title">Fulfillment Preference</span>
-            <span style={{ fontSize: '0.72rem', color: '#00e599', background: 'rgba(0,229,153,0.12)', padding: '2px 8px', borderRadius: '4px', fontWeight: 800 }}>
-              Live
-            </span>
-          </div>
+        {/* Minimalist Segmented Fulfillment Toggle */}
+        <div className="cred-hero-right">
+          <div className="cred-fulfillment-pill-group">
+            <button
+              className={`cred-fulfillment-tab ${deliveryMode === 'delivery' ? 'active' : ''}`}
+              onClick={() => setDeliveryMode('delivery')}
+              type="button"
+            >
+              <Truck size={15} />
+              <span>Delivery on Demand</span>
+            </button>
 
-          <div className="cred-deliv-options-grid">
-            {DELIVERY_OPTIONS.map((opt) => {
-              const isSelected = deliveryMode === opt.id;
-              const IconComp = opt.id === 'delivery' ? Truck : Store;
-
-              return (
-                <div
-                  key={opt.id}
-                  className={`cred-deliv-btn ${isSelected ? 'active' : ''}`}
-                  onClick={() => setDeliveryMode(opt.id)}
-                >
-                  <div className="cred-deliv-top-row">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <IconComp size={16} color={isSelected ? '#00e599' : '#8e8e98'} />
-                      <span className="cred-deliv-name">{opt.title}</span>
-                    </div>
-                    {isSelected && <CheckCircle2 size={16} color="#00e599" />}
-                  </div>
-
-                  <p className="cred-deliv-desc">{opt.subtitle}</p>
-                </div>
-              );
-            })}
+            <button
+              className={`cred-fulfillment-tab ${deliveryMode === 'pickup' ? 'active' : ''}`}
+              onClick={() => setDeliveryMode('pickup')}
+              type="button"
+            >
+              <Store size={15} />
+              <span>Self Pick-up</span>
+            </button>
           </div>
         </div>
       </div>
