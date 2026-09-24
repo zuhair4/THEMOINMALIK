@@ -1,22 +1,31 @@
 // Country Delight inspired B2B Dairy Catalog for THEMOINMALIK DAIRY
 
+export const getImageUrl = (filename) => {
+  if (!filename) return './images/fresh_full_cream_milk.jpg';
+  if (filename.startsWith('http://') || filename.startsWith('https://')) return filename;
+  const base = import.meta.env.BASE_URL || './';
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+  const cleanFile = filename.startsWith('/') ? filename.slice(1) : filename;
+  return `${cleanBase}${cleanFile}`;
+};
+
 export const CATEGORY_IMAGE_MAP = {
-  "milk-full-cream": "/images/fresh_full_cream_milk.jpg",
-  "milk-cow": "/images/fresh_pure_cow_milk.jpg",
-  "milk-buffalo": "/images/fresh_buffalo_milk.jpg",
-  "milk-toned": "/images/fresh_toned_milk.jpg",
-  "paneer-fresh": "/images/fresh_malai_paneer.jpg",
-  "dahi-fresh": "/images/fresh_dahi_curd.jpg",
-  "ghee-pure": "/images/pure_desi_ghee.jpg",
-  "butter-fresh": "/images/fresh_butter_block.jpg"
+  "milk-full-cream": getImageUrl("images/fresh_full_cream_milk.jpg"),
+  "milk-cow": getImageUrl("images/fresh_pure_cow_milk.jpg"),
+  "milk-buffalo": getImageUrl("images/fresh_buffalo_milk.jpg"),
+  "milk-toned": getImageUrl("images/fresh_toned_milk.jpg"),
+  "paneer-fresh": getImageUrl("images/fresh_malai_paneer.jpg"),
+  "dahi-fresh": getImageUrl("images/fresh_dahi_curd.jpg"),
+  "ghee-pure": getImageUrl("images/pure_desi_ghee.jpg"),
+  "butter-fresh": getImageUrl("images/fresh_butter_block.jpg")
 };
 
 export const CATEGORY_FALLBACK_IMAGES = {
-  "Milk": "/images/fresh_full_cream_milk.jpg",
-  "Paneer": "/images/fresh_malai_paneer.jpg",
-  "Dahi": "/images/fresh_dahi_curd.jpg",
-  "Ghee": "/images/pure_desi_ghee.jpg",
-  "Butter": "/images/fresh_butter_block.jpg"
+  "Milk": getImageUrl("images/fresh_full_cream_milk.jpg"),
+  "Paneer": getImageUrl("images/fresh_malai_paneer.jpg"),
+  "Dahi": getImageUrl("images/fresh_dahi_curd.jpg"),
+  "Ghee": getImageUrl("images/pure_desi_ghee.jpg"),
+  "Butter": getImageUrl("images/fresh_butter_block.jpg")
 };
 
 export const CATEGORY_ICONS = {
@@ -32,9 +41,14 @@ export const CATEGORY_ICONS = {
  */
 export function enrichSheetProduct(sheetItem) {
   const category = sheetItem.category || "Milk";
-  const image = CATEGORY_IMAGE_MAP[sheetItem.id] ||
-                CATEGORY_FALLBACK_IMAGES[category] ||
-                "/images/fresh_full_cream_milk.jpg";
+  let image = CATEGORY_IMAGE_MAP[sheetItem.id] ||
+              CATEGORY_FALLBACK_IMAGES[category] ||
+              getImageUrl("images/fresh_full_cream_milk.jpg");
+
+  if (sheetItem.image) {
+    image = sheetItem.image.startsWith('http') ? sheetItem.image : getImageUrl(sheetItem.image);
+  }
+
   const categoryIcon = CATEGORY_ICONS[category] || "🥛";
 
   return {
@@ -97,7 +111,7 @@ export const INITIAL_PRODUCTS = [
     name: "Full Cream Buffalo Milk",
     category: "Milk",
     description: "Naturally thick farm-fresh milk with natural cream layer. Zero adulteration, tested for 70+ parameters.",
-    image: "/images/fresh_full_cream_milk.jpg",
+    image: getImageUrl("images/fresh_full_cream_milk.jpg"),
     packaging: "Crate (12 Litres / 24 Pouches)",
     mrp: 960,
     pricePerUnit: 816,
@@ -111,7 +125,7 @@ export const INITIAL_PRODUCTS = [
     name: "Pure Cow Milk",
     category: "Milk",
     description: "Pure cow milk with natural golden cream. Sourced from grass-fed cows, naturally sweet and easy to digest.",
-    image: "/images/fresh_pure_cow_milk.jpg",
+    image: getImageUrl("images/fresh_pure_cow_milk.jpg"),
     packaging: "Crate (12 Litres / 24 Pouches)",
     mrp: 816,
     pricePerUnit: 696,
@@ -125,7 +139,7 @@ export const INITIAL_PRODUCTS = [
     name: "Special Buffalo Milk",
     category: "Milk",
     description: "High fat creamy buffalo milk. Gives rich texture to tea, thick malai, rabri, and artisanal sweets.",
-    image: "/images/fresh_buffalo_milk.jpg",
+    image: getImageUrl("images/fresh_buffalo_milk.jpg"),
     packaging: "Crate (12 Litres / 24 Pouches)",
     mrp: 980,
     pricePerUnit: 840,
@@ -139,7 +153,7 @@ export const INITIAL_PRODUCTS = [
     name: "Toned Fresh Milk",
     category: "Milk",
     description: "Pasteurized, homogenized light balanced milk. Standard daily supply for restaurants, cafes, and milk bars.",
-    image: "/images/fresh_toned_milk.jpg",
+    image: getImageUrl("images/fresh_toned_milk.jpg"),
     packaging: "Crate (12 Litres / 24 Pouches)",
     mrp: 720,
     pricePerUnit: 624,
@@ -153,7 +167,7 @@ export const INITIAL_PRODUCTS = [
     name: "Fresh Malai Paneer (5kg Block)",
     category: "Paneer",
     description: "Made from pure buffalo milk within hours of milking. Softest melt-in-mouth texture, zero starch or palm oil.",
-    image: "/images/fresh_malai_paneer.jpg",
+    image: getImageUrl("images/fresh_malai_paneer.jpg"),
     packaging: "5 Kg Block",
     mrp: 1950,
     pricePerUnit: 1650,
@@ -167,7 +181,7 @@ export const INITIAL_PRODUCTS = [
     name: "Fresh Set Dahi (10kg Bucket)",
     category: "Dahi",
     description: "Thick, naturally set commercial grade curd with live probiotic cultures. Rich consistency for raita and lassi.",
-    image: "/images/fresh_dahi_curd.jpg",
+    image: getImageUrl("images/fresh_dahi_curd.jpg"),
     packaging: "10 Kg Bucket",
     mrp: 900,
     pricePerUnit: 750,
@@ -181,7 +195,7 @@ export const INITIAL_PRODUCTS = [
     name: "Pure Golden Danedaar Desi Ghee",
     category: "Ghee",
     description: "Traditional granular bilona style 100% pure desi ghee. Unrivalled aroma and rich golden grain for commercial kitchens.",
-    image: "/images/pure_desi_ghee.jpg",
+    image: getImageUrl("images/pure_desi_ghee.jpg"),
     packaging: "15 Kg Tin",
     mrp: 10500,
     pricePerUnit: 8700,
@@ -195,7 +209,7 @@ export const INITIAL_PRODUCTS = [
     name: "Fresh Creamery Butter (5kg Slab)",
     category: "Butter",
     description: "Freshly churned pure milk fat butter slab. Smooth spreading, superior browning for gravies, toasts, and parathas.",
-    image: "/images/fresh_butter_block.jpg",
+    image: getImageUrl("images/fresh_butter_block.jpg"),
     packaging: "5 Kg Slab",
     mrp: 2750,
     pricePerUnit: 2350,
