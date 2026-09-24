@@ -1,0 +1,1431 @@
+:root {
+  /* CRED Signature Color Palette */
+  --cred-bg: #09090b;
+  --cred-surface-1: #121216;
+  --cred-surface-2: #18181f;
+  --cred-surface-3: #22222b;
+  --cred-input: #15151b;
+  
+  --cred-neon: #00e599;
+  --cred-neon-hover: #00c784;
+  --cred-neon-glow: rgba(0, 229, 153, 0.25);
+  --cred-neon-subtle: rgba(0, 229, 153, 0.08);
+  --cred-neon-border: rgba(0, 229, 153, 0.35);
+  
+  --cred-border: rgba(255, 255, 255, 0.09);
+  --cred-border-light: rgba(255, 255, 255, 0.16);
+  
+  --cred-text-white: #ffffff;
+  --cred-text-muted: #8e8e98;
+  --cred-text-dim: #5c5c66;
+  
+  --cred-radius-sm: 8px;
+  --cred-radius-md: 14px;
+  --cred-radius-lg: 22px;
+  --cred-radius-pill: 9999px;
+  
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--cred-bg);
+  color: var(--cred-text-white);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.btn-buy-add, .cred-btn-add {
+  background: var(--cred-neon) !important;
+  color: #051610 !important;
+  font-weight: 800 !important;
+  border-radius: var(--cred-radius-pill) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 0 16px var(--cred-neon-glow) !important;
+  cursor: pointer !important;
+}
+
+.btn-buy-add:hover, .cred-btn-add:hover {
+  background: var(--cred-neon-hover) !important;
+  transform: translateY(-1px);
+}
+
+input, select, textarea {
+  font-family: var(--font-body);
+  border: 1px solid var(--cred-border);
+  border-radius: var(--cred-radius-sm);
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  color: #ffffff;
+  background-color: var(--cred-input);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cred-neon);
+  box-shadow: 0 0 0 3px var(--cred-neon-glow);
+}
+
+.cred-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 75px;
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Form Helper Responsive Grid */
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 640px) {
+  .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* ==========================================================================
+   1. CRED MINIMALIST HEADER
+   ========================================================================== */
+.cred-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(9, 9, 11, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--cred-border);
+  width: 100%;
+}
+
+.cred-main-bar {
+  padding: 12px 20px;
+}
+
+.cred-header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cred-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.cred-logo-monogram {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, #181822 0%, #0d0d13 100%);
+  border: 1px solid var(--cred-neon-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 14px var(--cred-neon-glow);
+  flex-shrink: 0;
+}
+
+.cred-logo-symbol {
+  font-size: 1.15rem;
+}
+
+.cred-logo-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.cred-logo-title span {
+  color: var(--cred-neon);
+}
+
+.cred-logo-sub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cred-text-dim);
+  white-space: nowrap;
+}
+
+.cred-search-box {
+  flex: 1;
+  max-width: 380px;
+  position: relative;
+}
+
+.cred-search-box input {
+  width: 100%;
+  height: 38px;
+  padding-left: 36px;
+  padding-right: 14px;
+  border-radius: var(--cred-radius-pill);
+  background: #14141a;
+  border: 1px solid var(--cred-border);
+  font-size: 0.84rem;
+  color: #ffffff;
+}
+
+.cred-search-box input:focus {
+  background: #191922;
+  border-color: var(--cred-neon);
+}
+
+.cred-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cred-text-dim);
+}
+
+.cred-mobile-search-row {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .cred-mobile-search-row {
+    display: block;
+    position: relative;
+    margin-top: 8px;
+  }
+  .cred-mobile-search-row input {
+    width: 100%;
+    height: 36px;
+    padding-left: 34px;
+    padding-right: 12px;
+    border-radius: var(--cred-radius-pill);
+    background: #14141a;
+    border: 1px solid var(--cred-border);
+    font-size: 0.82rem;
+    color: #ffffff;
+  }
+  .cred-mobile-search-row .cred-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cred-text-dim);
+  }
+}
+
+.cred-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Store Profile Button Next to Cart */
+.cred-btn-profile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--cred-radius-pill);
+  background: #14141a;
+  border: 1px solid var(--cred-border);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cred-btn-profile:hover {
+  background: #1a1a24;
+  border-color: var(--cred-border-light);
+}
+
+.cred-profile-text {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cred-btn-cart {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border-radius: var(--cred-radius-pill);
+  background: var(--cred-neon);
+  color: #051610;
+  font-size: 0.86rem;
+  font-weight: 800;
+  box-shadow: 0 0 16px var(--cred-neon-glow);
+  white-space: nowrap;
+}
+
+.cred-btn-cart:hover {
+  background: var(--cred-neon-hover);
+  transform: translateY(-1px);
+}
+
+.cred-cart-badge {
+  background: #051610;
+  color: var(--cred-neon);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: var(--cred-radius-pill);
+}
+
+.cred-cart-total {
+  font-size: 0.84rem;
+  border-left: 1px solid rgba(0, 0, 0, 0.25);
+  padding-left: 6px;
+}
+
+/* Header on Mobile */
+@media (max-width: 768px) {
+  .cred-main-bar {
+    padding: 8px 12px;
+  }
+  
+  .cred-header-inner {
+    gap: 6px;
+  }
+  
+  .cred-brand-wrap {
+    gap: 7px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  
+  .cred-logo-monogram {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    font-size: 0.95rem;
+  }
+  
+  .cred-logo-symbol {
+    font-size: 0.95rem;
+  }
+  
+  .cred-logo-title {
+    font-size: 0.80rem;
+    letter-spacing: -0.01em;
+  }
+  
+  .cred-logo-sub {
+    font-size: 0.52rem;
+    letter-spacing: 0.04em;
+  }
+  
+  .cred-search-box {
+    display: none;
+  }
+  
+  .cred-header-actions {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  
+  .cred-btn-profile {
+    padding: 6px 9px;
+    font-size: 0.75rem;
+    gap: 4px;
+  }
+  
+  .cred-profile-text {
+    max-width: 60px;
+    font-size: 0.75rem;
+  }
+  
+  .cred-btn-cart {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  
+  .cred-cart-badge {
+    font-size: 0.68rem;
+    padding: 1px 5px;
+  }
+  
+  .cred-cart-total {
+    font-size: 0.78rem;
+    padding-left: 4px;
+  }
+}
+
+/* ==========================================================================
+   2. HERO & 2 FULFILLMENT MODES (COMPACT ON MOBILE)
+   ========================================================================== */
+.cred-hero-section {
+  padding: 28px 20px 24px;
+  background: radial-gradient(circle at 50% 0%, #151520 0%, #09090b 100%);
+  border-bottom: 1px solid var(--cred-border);
+  width: 100%;
+}
+
+.cred-hero-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.cred-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cred-neon-subtle);
+  border: 1px solid var(--cred-neon-border);
+  color: var(--cred-neon);
+  padding: 3px 12px;
+  border-radius: var(--cred-radius-pill);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.cred-hero-title {
+  font-size: 2.1rem;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  letter-spacing: -0.03em;
+}
+
+.cred-hero-title span {
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cred-hero-desc {
+  font-size: 0.92rem;
+  color: var(--cred-text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  max-width: 560px;
+}
+
+.cred-hero-highlights {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cred-hero-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #14141c;
+  padding: 5px 12px;
+  border-radius: var(--cred-radius-pill);
+  border: 1px solid var(--cred-border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e4e4e7;
+}
+
+.cred-delivery-card {
+  background: var(--cred-surface-1);
+  border: 1px solid var(--cred-border);
+  border-radius: var(--cred-radius-lg);
+  padding: 18px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+.cred-deliv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cred-deliv-title {
+  font-weight: 800;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.cred-deliv-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cred-deliv-btn {
+  padding: 12px;
+  border-radius: var(--cred-radius-md);
+  border: 1.5px solid var(--cred-border);
+  background: #0d0d12;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cred-deliv-btn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cred-deliv-btn.active {
+  border-color: var(--cred-neon);
+  background: var(--cred-neon-subtle);
+  box-shadow: 0 0 16px rgba(0, 229, 153, 0.12);
+}
+
+.cred-deliv-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cred-deliv-name {
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: #ffffff;
+}
+
+.cred-deliv-desc {
+  font-size: 0.72rem;
+  color: var(--cred-text-muted);
+  line-height: 1.3;
+}
+
+/* Mobile Hero Compression: Cuts down 400px of scrolling! */
+@media (max-width: 768px) {
+  .cred-hero-section {
+    padding: 16px 14px 14px;
+  }
+  
+  .cred-hero-container {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  
+  .cred-hero-title {
+    font-size: 1.45rem;
+    margin-bottom: 6px;
+  }
+  
+  .cred-hero-desc {
+    font-size: 0.82rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .cred-hero-highlights {
+    display: none; /* Hide secondary chips on mobile to bring products above fold */
+  }
+  
+  .cred-delivery-card {
+    padding: 12px;
+    border-radius: var(--cred-radius-md);
+  }
+  
+  .cred-deliv-header {
+    margin-bottom: 8px;
+  }
+  
+  .cred-deliv-btn {
+    padding: 8px 10px;
+  }
+  
+  .cred-deliv-desc {
+    display: none; /* Keep fulfillment switch compact */
+  }
+}
+
+/* ==========================================================================
+   3. CIRCULAR CATEGORY STORIES
+   ========================================================================== */
+.cred-stories-wrap {
+  background: #0c0c10;
+  border-bottom: 1px solid var(--cred-border);
+  padding: 14px 20px;
+  width: 100%;
+}
+
+.cred-stories-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+.cred-stories-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.cred-story-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 68px;
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+
+.cred-story-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #14141c;
+  border: 1.5px solid var(--cred-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: all 0.2s ease;
+}
+
+.cred-story-item:hover .cred-story-circle {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cred-story-item.active .cred-story-circle {
+  border-color: var(--cred-neon);
+  background: var(--cred-neon-subtle);
+  box-shadow: 0 0 14px var(--cred-neon-glow);
+}
+
+.cred-story-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--cred-text-muted);
+  white-space: nowrap;
+}
+
+.cred-story-item.active .cred-story-label {
+  color: var(--cred-neon);
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .cred-stories-wrap {
+    padding: 10px 14px;
+  }
+  
+  .cred-stories-inner {
+    gap: 12px;
+  }
+  
+  .cred-story-circle {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+  
+  .cred-story-label {
+    font-size: 0.7rem;
+  }
+}
+
+/* ==========================================================================
+   4. PRODUCT GRID & CARDS (2-COLUMN COMPACT MOBILE LAYOUT)
+   ========================================================================== */
+.cred-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 20px;
+  width: 100%;
+}
+
+.cred-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cred-section-title {
+  font-size: 1.45rem;
+  color: #ffffff;
+}
+
+.cred-section-sub {
+  font-size: 0.82rem;
+  color: var(--cred-text-muted);
+}
+
+.cred-mode-badge {
+  background: #14141c;
+  border: 1px solid var(--cred-border);
+  padding: 5px 12px;
+  border-radius: var(--cred-radius-pill);
+  font-size: 0.78rem;
+  color: var(--cred-text-muted);
+}
+
+.cred-mode-badge strong {
+  color: var(--cred-neon);
+}
+
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.cred-card {
+  background: var(--cred-surface-1);
+  border: 1px solid var(--cred-border);
+  border-radius: var(--cred-radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cred-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 153, 0.45);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 229, 153, 0.1);
+}
+
+.cred-card-media {
+  position: relative;
+  height: 200px;
+  background: #09090b;
+  overflow: hidden;
+  width: 100%;
+}
+
+.cred-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cred-card:hover .cred-card-img {
+  transform: scale(1.05);
+}
+
+.cred-badge-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(9, 9, 11, 0.88);
+  backdrop-filter: blur(6px);
+  color: var(--cred-neon);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: var(--cred-radius-pill);
+  border: 1px solid var(--cred-neon-border);
+}
+
+.cred-badge-stock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--cred-radius-pill);
+}
+
+.cred-stock-in {
+  background: rgba(0, 229, 153, 0.18);
+  color: var(--cred-neon);
+  border: 1px solid var(--cred-neon-border);
+}
+
+.cred-stock-out {
+  background: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.cred-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cred-purity-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--cred-neon);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.cred-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.cred-card-desc {
+  font-size: 0.8rem;
+  color: var(--cred-text-muted);
+  line-height: 1.4;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cred-pack-pill {
+  background: #0d0d12;
+  padding: 5px 10px;
+  border-radius: var(--cred-radius-sm);
+  border: 1px solid var(--cred-border);
+  font-size: 0.76rem;
+  color: #e4e4e7;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cred-specs-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.cred-spec-chip {
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: #181822;
+  color: var(--cred-text-muted);
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--cred-border);
+}
+
+.cred-pricing-row {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--cred-border);
+}
+
+.cred-price-main {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.cred-price-mrp {
+  font-size: 0.78rem;
+  color: var(--cred-text-dim);
+  text-decoration: line-through;
+}
+
+.cred-rate-text {
+  font-size: 0.72rem;
+  color: var(--cred-text-muted);
+}
+
+.cred-discount-tag {
+  background: var(--cred-neon-subtle);
+  color: var(--cred-neon);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--cred-neon-border);
+}
+
+.cred-btn-add {
+  background: var(--cred-neon);
+  color: #051610;
+  padding: 7px 18px;
+  border-radius: var(--cred-radius-pill);
+  font-weight: 800;
+  font-size: 0.84rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 0 12px var(--cred-neon-glow);
+}
+
+.cred-btn-add:hover {
+  background: var(--cred-neon-hover);
+}
+
+.cred-stepper {
+  display: flex;
+  align-items: center;
+  background: #161620;
+  border: 1.5px solid var(--cred-neon);
+  border-radius: var(--cred-radius-pill);
+  overflow: hidden;
+  box-shadow: 0 0 12px var(--cred-neon-glow);
+}
+
+.cred-stepper-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cred-neon);
+  font-weight: 800;
+}
+
+.cred-stepper-btn:hover {
+  background: var(--cred-neon-subtle);
+}
+
+.cred-stepper-val {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   MOBILE PRODUCT GRID OPTIMIZATIONS (2-COLUMN HIGH DENSITY)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .cred-content {
+    padding: 16px 12px;
+  }
+  
+  .cred-section-header {
+    margin-bottom: 12px;
+  }
+  
+  .cred-section-title {
+    font-size: 1.18rem;
+  }
+  
+  .cred-section-sub {
+    font-size: 0.74rem;
+  }
+  
+  .cred-mode-badge {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+  }
+  
+  /* 2 Column Grid on Mobile */
+  .cred-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  
+  .cred-card {
+    border-radius: 12px;
+  }
+  
+  .cred-card-media {
+    height: 125px; /* Compact image height */
+  }
+  
+  .cred-badge-tag {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    top: 6px;
+    left: 6px;
+  }
+  
+  .cred-badge-stock {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    top: 6px;
+    right: 6px;
+  }
+  
+  .cred-card-body {
+    padding: 10px;
+  }
+  
+  .cred-purity-row {
+    font-size: 0.62rem;
+    margin-bottom: 2px;
+  }
+  
+  .cred-card-title {
+    font-size: 0.88rem;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .cred-card-desc {
+    display: none; /* Hide text description on mobile to save vertical scrolling! */
+  }
+  
+  .cred-pack-pill {
+    padding: 3px 6px;
+    font-size: 0.68rem;
+    margin-bottom: 6px;
+    gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .cred-specs-row {
+    display: none; /* Hide specs chips in 2-col mobile view */
+  }
+  
+  .cred-pricing-row {
+    padding-top: 8px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .cred-price-main {
+    font-size: 1.05rem;
+  }
+  
+  .cred-price-mrp {
+    font-size: 0.72rem;
+  }
+  
+  .cred-rate-text {
+    font-size: 0.65rem;
+  }
+  
+  .cred-discount-tag {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+  }
+  
+  .cred-btn-add {
+    width: 100%;
+    justify-content: center;
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .cred-stepper {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .cred-stepper-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ==========================================================================
+   5. PURITY GUARANTEE SECTION
+   ========================================================================== */
+.cred-purity-section {
+  background: var(--cred-surface-1);
+  border-radius: var(--cred-radius-lg);
+  border: 1px solid var(--cred-border);
+  padding: 30px 24px;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.cred-purity-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 24px;
+}
+
+.cred-purity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cred-neon-subtle);
+  color: var(--cred-neon);
+  padding: 3px 12px;
+  border-radius: var(--cred-radius-pill);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.cred-purity-title {
+  font-size: 1.45rem;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.cred-purity-sub {
+  font-size: 0.82rem;
+  color: var(--cred-text-muted);
+}
+
+.cred-purity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.cred-purity-card {
+  background: #0d0d12;
+  border: 1px solid var(--cred-border);
+  border-radius: var(--cred-radius-md);
+  padding: 18px;
+  transition: all 0.2s ease;
+}
+
+.cred-purity-card:hover {
+  border-color: var(--cred-neon-border);
+  transform: translateY(-2px);
+}
+
+.cred-purity-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--cred-neon-subtle);
+  color: var(--cred-neon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.cred-purity-card-title {
+  font-size: 0.94rem;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.cred-purity-card-desc {
+  font-size: 0.78rem;
+  color: var(--cred-text-muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .cred-purity-section {
+    padding: 18px 14px;
+    border-radius: var(--cred-radius-md);
+  }
+  
+  .cred-purity-header {
+    margin-bottom: 16px;
+  }
+  
+  .cred-purity-title {
+    font-size: 1.15rem;
+  }
+  
+  .cred-purity-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .cred-purity-card {
+    padding: 12px;
+  }
+  
+  .cred-purity-card-title {
+    font-size: 0.82rem;
+  }
+  
+  .cred-purity-card-desc {
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+}
+
+/* ==========================================================================
+   6. DRAWERS & MODALS (NATIVE BOTTOM SHEET ON MOBILE)
+   ========================================================================== */
+.drawer-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.drawer-dark-panel {
+  background: #111116 !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border-left: 1px solid var(--cred-border) !important;
+  box-shadow: -15px 0 35px rgba(0, 0, 0, 0.8) !important;
+  animation: slideDrawerRight 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes slideDrawerRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+}
+
+.modal-dark-panel {
+  background: #121218 !important;
+  border: 1px solid var(--cred-border) !important;
+  border-radius: var(--cred-radius-lg) !important;
+  width: 100% !important;
+  max-width: 540px !important;
+  max-height: 88vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.9) !important;
+  animation: modalScaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes modalScaleUp {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-dark-header, .drawer-dark-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--cred-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.modal-dark-body, .drawer-dark-body {
+  padding: 18px 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+.modal-dark-footer, .drawer-dark-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--cred-border);
+  background: #0c0c10;
+  flex-shrink: 0;
+}
+
+.btn-close-dark {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a22;
+  color: var(--cred-text-muted);
+  border: 1px solid var(--cred-border);
+  flex-shrink: 0;
+}
+
+.btn-close-dark:hover {
+  background: #252532;
+  color: #ffffff;
+}
+
+/* Modals as Native Bottom Sheets on Mobile */
+@media (max-width: 640px) {
+  .modal-backdrop {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+  
+  .modal-dark-panel {
+    max-width: 100% !important;
+    max-height: 90vh !important;
+    border-radius: 20px 20px 0 0 !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    animation: modalSlideUpMobile 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  
+  @keyframes modalSlideUpMobile {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  
+  .drawer-dark-panel {
+    max-width: 100% !important;
+  }
+  
+  .modal-dark-header, .drawer-dark-header {
+    padding: 14px 16px;
+  }
+  
+  .modal-dark-body, .drawer-dark-body {
+    padding: 14px 16px;
+  }
+  
+  .modal-dark-footer, .drawer-dark-footer {
+    padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ==========================================================================
+   7. MOBILE FLOATING CART BAR & FOOTER
+   ========================================================================== */
+.cred-mobile-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(14, 14, 18, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--cred-border);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  z-index: 90;
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+  .cred-mobile-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.cred-footer {
+  background: #060608;
+  border-top: 1px solid var(--cred-border);
+  padding: 22px 20px;
+  margin-top: auto;
+  width: 100%;
+}
+
+.cred-footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cred-footer-title {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.94rem;
+}
+
+.cred-footer-sub {
+  font-size: 0.75rem;
+  color: var(--cred-text-dim);
+}
+
+.cred-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.78rem;
+  color: var(--cred-text-muted);
+}
+
+/* Print Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printable-invoice, .printable-invoice * {
+    visibility: visible;
+  }
+  .printable-invoice {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+  }
+}
